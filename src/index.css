@@ -216,7 +216,7 @@
   }
 
   .week-row {
-    @apply flex justify-between items-center p-3 mb-3 rounded-xl;
+    @apply flex justify-between items-center p-3 rounded-xl;
     background: hsl(0 0% 98%);
     font-family: 'Press Start 2P', cursive;
     border: 1px solid hsl(0 0% 0%);
@@ -224,6 +224,8 @@
     
     /* ⚡ PERFORMANCE: Optimize rendering */
     transform: translateZ(0);
+    
+    /* ℹ️ Note: Spacing is controlled by parent container's space-y-3 class */
   }
   
   .dark .week-row {
