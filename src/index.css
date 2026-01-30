@@ -1,0 +1,272 @@
+/* 1. MUST BE AT THE VERY TOP */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* 2. TAILWIND DIRECTIVES */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pixy Weather Design System - Cozy Pixel Aesthetic */
+
+@layer base {
+  :root {
+    /* Light/Day Theme */
+    --background: 210 60% 85%;
+    --foreground: 240 10% 10%;
+
+    --card: 245 50% 66%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 245 50% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 240 10% 20%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 240 5% 40%;
+
+    --accent: 42 100% 73%;
+    --accent-foreground: 240 10% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 0%;
+    --input: 0 0% 100%;
+    --ring: 245 50% 55%;
+
+    --radius: 0.75rem;
+
+    /* Weather-specific tokens */
+    --weather-card-bg: 0 0% 100% / 0.88;
+    --weather-card-shadow: 0 0% 0% / 0.25;
+    --weather-glass: 0 0% 100% / 0.32;
+    --weather-glass-border: 0 0% 100% / 0.28;
+
+    /* Gradients */
+    --gradient-day: linear-gradient(180deg, hsl(200 80% 75%), hsl(210 70% 88%));
+    --gradient-card: linear-gradient(135deg, hsl(245 50% 68%), hsl(245 45% 62%));
+
+    /* 🌄 GLOBAL BODY BACKGROUND (DAY IMAGE) */
+    --body-bg-image: url('/src/assets/backgrounds/day-bg.jpg');
+
+    /* Pixel shadows */
+    --pixel-shadow: 0 3px 0 hsl(0 0% 75%);
+    --pixel-shadow-hover: 0 2px 0 hsl(0 0% 70%);
+    --card-shadow: 0 8px 28px hsl(var(--weather-card-shadow));
+  }
+
+  .dark {
+    /* Dark/Night Theme */
+    --background: 220 60% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 45% 18%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 45% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 230 30% 22%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 230 25% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 42 100% 65%;
+    --accent-foreground: 240 10% 10%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 30% 30%;
+    --input: 230 30% 22%;
+    --ring: 220 70% 60%;
+
+    /* Weather-specific tokens - Night */
+    --weather-card-bg: 230 45% 18% / 0.95;
+    --weather-card-shadow: 0 0% 0% / 0.4;
+    --weather-glass: 230 40% 25% / 0.5;
+    --weather-glass-border: 230 50% 40% / 0.3;
+
+    /* Gradients - Night */
+    --gradient-day: linear-gradient(180deg, hsl(220 50% 10%), hsl(230 60% 15%));
+    --gradient-card: linear-gradient(135deg, hsl(230 45% 22%), hsl(230 40% 16%));
+
+    /* 🌌 GLOBAL BODY BACKGROUND (NIGHT IMAGE) */
+    --body-bg-image: url('/src/assets/backgrounds/night-bg.jpg');
+
+    --pixel-shadow: 0 3px 0 hsl(230 30% 12%);
+    --pixel-shadow-hover: 0 2px 0 hsl(230 30% 10%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Press Start 2P', cursive;
+    min-height: 100vh;
+
+    /* ✅ FULL PAGE BACKGROUND IMAGE */
+    background-image: var(--body-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    transition: background-image 0.6s ease-in-out;
+  }
+}
+
+
+@layer components {
+  .pixel-button {
+    @apply inline-flex items-center justify-center px-3 py-2 rounded-md cursor-pointer transition-all duration-200;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    background: hsl(0 0% 95%);
+    border: 2px solid hsl(0 0% 0%);
+    box-shadow: var(--pixel-shadow);
+  }
+  
+  .pixel-button:hover {
+    background: hsl(0 0% 90%);
+  }
+  
+  .pixel-button:active {
+    box-shadow: var(--pixel-shadow-hover);
+    transform: translateY(1px);
+  }
+  
+  .dark .pixel-button {
+    background: hsl(230 30% 25%);
+    color: hsl(0 0% 95%);
+    border-color: hsl(230 30% 40%);
+  }
+  
+  .dark .pixel-button:hover {
+    background: hsl(230 30% 30%);
+  }
+
+  .weather-card-main {
+    background: var(--gradient-card);
+    @apply rounded-2xl shadow-lg;
+    border: 3px solid hsl(0 0% 100% / 0.14);
+    box-shadow: var(--card-shadow);
+  }
+
+  .glass-panel {
+    background: hsl(var(--weather-glass));
+    backdrop-filter: blur(8px);
+    border: 2px solid hsl(var(--weather-glass-border));
+    @apply rounded-xl;
+  }
+
+  .forecast-card {
+    background: hsl(0 0% 96%);
+    @apply rounded-xl text-center p-3;
+    font-family: 'Press Start 2P', cursive;
+    border: 1px solid hsl(0 0% 0%);
+    box-shadow: var(--pixel-shadow);
+  }
+  
+  .dark .forecast-card {
+    background: hsl(230 30% 22%);
+    border-color: hsl(230 30% 40%);
+    color: hsl(0 0% 95%);
+  }
+
+  .week-row {
+    @apply flex justify-between items-center p-3 mb-3 rounded-xl;
+    background: hsl(0 0% 98%);
+    font-family: 'Press Start 2P', cursive;
+    border: 1px solid hsl(0 0% 0%);
+    box-shadow: var(--pixel-shadow);
+  }
+  
+  .dark .week-row {
+    background: hsl(230 30% 20%);
+    border-color: hsl(230 30% 35%);
+    color: hsl(0 0% 95%);
+  }
+
+  .detail-card {
+    @apply rounded-xl p-4 text-center;
+    background: hsl(0 0% 98%);
+    border: 2px solid hsl(0 0% 0%);
+    box-shadow: var(--pixel-shadow);
+  }
+  
+  .dark .detail-card {
+    background: hsl(230 30% 20%);
+    border-color: hsl(230 30% 40%);
+  }
+}
+
+@layer utilities {
+  .text-pixel {
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  .text-shadow-dark {
+    text-shadow: 2px 2px 6px hsl(0 0% 0%);
+  }
+  
+  .text-shadow-glow {
+    text-shadow: 0 0 20px hsl(var(--accent) / 0.6);
+  }
+}
+
+/* Star animation */
+@keyframes twinkle {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: scale(1.5); 
+    opacity: 1; 
+  }
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 1px;
+  animation: twinkle var(--duration, 2s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Temperature flip animation */
+@keyframes flip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.temp-flip {
+  animation: flip 0.4s ease-in-out;
+}
+
+/* Loading pulse */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.loading-pulse {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
