@@ -33,14 +33,8 @@ export default defineConfig({
         },
       },
     },
-    // Minify and compress
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true,
-      },
-    },
+    // Use esbuild minification (faster than terser)
+    minify: 'esbuild',
     // CSS code splitting
     cssCodeSplit: true,
     // Source maps for production debugging (disable if not needed)
@@ -63,14 +57,11 @@ export default defineConfig({
   },
   // Development server optimizations
   server: {
-    // Enable CORS
     cors: true,
-    // Faster HMR
     hmr: {
       overlay: true,
     },
   },
-  // Preview server settings
   preview: {
     port: 4173,
     strictPort: true,
